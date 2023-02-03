@@ -8,7 +8,7 @@
 using namespace std;
 
 int main() {
-	// Exercise 1
+	cout << "-=== Exercise 1 ===-" << endl;
 	int scores[100];
 
 	srand(time(0));
@@ -33,14 +33,14 @@ int main() {
 		cout << "There were " << ranges[index] << " scores of value " << previousLimit << " to " << rangeLimits[index] << endl;
 	}
 
-	// Exercise 2
+	cout << "-=== Exercise 2 ===-" << endl;
 #if TEST == true
 	int sum = accumulate(ranges, ranges + 4, 0);
 	string testOutcome = sum == 100 ? "successful" : "unsuccessful";
 	cout << "Test for if sum of ranges is 100 was " << testOutcome << ". Total ranges was " << sum << endl;
 #endif
 
-	// Exercise 3
+	cout << "-=== Exercise 3 ===-" << endl;
 	enum MovementState {
 		STAND,
 		WALK,
@@ -70,7 +70,7 @@ int main() {
 
 
 
-	// Exercise 4
+	cout << "-=== Exercise 4 ===-" << endl;
 	for (int move = 0; move < 10; move++) {
 		switch (currentState) {
 		case STAND:
