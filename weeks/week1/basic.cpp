@@ -22,7 +22,7 @@ namespace secondJob {
     int salary = 15000;
 }
 
-void runBasicExercises() {
+int main() {
     // Exercise 1
     string name = getUserInput<string>("What is your name?");
     int age = getUserInput<int>("What is your age?");
@@ -61,7 +61,7 @@ void runBasicExercises() {
     // Exercise 9
     time_t now = time(0);
     tm gmTime;
-    gmtime_s(&gmTime, &now);
+    gmtime_r(&now, &gmTime);
 
     char buffer[9];
     strftime(buffer, 9, "%X", &gmTime);

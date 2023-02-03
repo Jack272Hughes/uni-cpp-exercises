@@ -1,12 +1,13 @@
 #define TEST true
 
+#include <iostream>
 #include <cstdlib>
 #include <string>
 #include <numeric>
 
 using namespace std;
 
-void runControlExercises() {
+int main() {
 	// Exercise 1
 	int scores[100];
 
