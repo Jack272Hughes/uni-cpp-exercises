@@ -8,5 +8,6 @@ public:
 	Location* location;
 
 	GameObject(int id, Location* location);
+	GameObject(const GameObject& identifier);
 };
 

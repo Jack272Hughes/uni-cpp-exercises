@@ -33,8 +33,8 @@ int main() {
     obj4.location->Set(8, 8, 8);
     obj4.location->Display();
     obj6.location->Display();
-    // obj6 is a shallow copy of obj4 and therefore they share the same variables and pointers
-    obj6 = GameObject(6, new Location(5, 5, 5));
+    // Before, obj6 was a shallow copy of obj4 and therefore they share the same variables and pointers
+    // To fix this you can create a custom copy constructor to ensure classes are given new and different objects
 
     cout << "-=== Exercise 7 ===-" << endl;
     HealthKit obj7 = HealthKit(7, new Location(6, 6, 6));
