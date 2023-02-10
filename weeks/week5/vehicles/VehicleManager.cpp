@@ -3,13 +3,13 @@
 VehicleManager::VehicleManager(int size) {
     this->count = 0;
     this->maxVehicles = size;
-    this->vehicals = new Vehicle*[size];
+    this->vehicles = new Vehicle*[size];
 }
 
 bool VehicleManager::Add(Vehicle *vehical) {
     if (count >= maxVehicles) return false;
 
-    vehicals[count] = vehical;
+    vehicles[count] = vehical;
     count++;
 
     return true;
@@ -17,7 +17,7 @@ bool VehicleManager::Add(Vehicle *vehical) {
 
 void VehicleManager::Display() {
     for (int i = 0; i < count; i++) {
-        vehicals[i]->Display();
+        vehicles[i]->Display();
     }
 }
 
@@ -26,5 +26,13 @@ int VehicleManager::GetCount() {
 }
 
 Vehicle** VehicleManager::GetList() {
-    return vehicals;
+    return vehicles;
+}
+
+void VehicleManager::DisplayDamagedVehicles() {
+    for (int i = 0; i < count; i++) {
+        if (vehicles[i]->damage >= 35) {
+            vehicles[i]->Display();
+        }
+    }
 }

@@ -54,4 +54,10 @@ int main() {
 
     cout << "-=== Exercise 7 ===-" << endl;
     Vehicle** damagedVehicles = DamagedVehicles(vehicleManager.GetList(), vehicleManager.GetCount());
+    for (int index = 0; damagedVehicles[index]; index++) {
+        damagedVehicles[index]->Display();
+    }
+
+    cout << "-=== Exercise 8 ===-" << endl;
+    vehicleManager.DisplayDamagedVehicles();
 }
