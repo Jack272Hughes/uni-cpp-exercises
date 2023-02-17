@@ -8,13 +8,14 @@
 
 using namespace std;
 
-Vehicle** DamagedVehicles(Vehicle **vehicles, int size) {
+Vehicle** DamagedVehicles(Vehicle **vehicles, int *size) {
     vector<Vehicle*> damagedVehicles;
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < *size; i++) {
         if (vehicles[i]->damage >= 35) {
             damagedVehicles.push_back(vehicles[i]);
         }
     }
+    *size = damagedVehicles.size();
     return &damagedVehicles[0];
 }
 
@@ -45,19 +46,22 @@ int main() {
     // and the Display function wasn't originally declared with 'virtual'
 
     cout << "-=== Exercise 5 & 6 ===-" << endl;
-    VehicleManager vehicleManager = VehicleManager(10);
+    VehicleManager* vehicleManager = new VehicleManager(10);
     for (Vehicle* vehicle : vehicles) {
-        vehicleManager.Add(vehicle);
+        vehicleManager->Add(vehicle);
     }
 
-    vehicleManager.Display();
+    vehicleManager->Display();
 
     cout << "-=== Exercise 7 ===-" << endl;
-    Vehicle** damagedVehicles = DamagedVehicles(vehicleManager.GetList(), vehicleManager.GetCount());
-    for (int index = 0; damagedVehicles[index]; index++) {
+    int* count = new int(0);
+    *count = vehicleManager->GetCount();
+
+    Vehicle** damagedVehicles = DamagedVehicles(vehicleManager->GetList(), count);
+    for (int index = 0; index < *count; index++) {
         damagedVehicles[index]->Display();
     }
 
     cout << "-=== Exercise 8 ===-" << endl;
-    vehicleManager.DisplayDamagedVehicles();
+    vehicleManager->DisplayDamagedVehicles();
 }

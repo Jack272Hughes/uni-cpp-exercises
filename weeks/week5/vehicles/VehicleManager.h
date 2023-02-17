@@ -14,6 +14,4 @@ public:
     int GetCount();
     Vehicle** GetList();
     void DisplayDamagedVehicles();
-
-    friend Vehicle** DamagedVehicles(Vehicle **vehicles,int *size);
 };
