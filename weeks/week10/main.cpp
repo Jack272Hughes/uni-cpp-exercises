@@ -78,7 +78,7 @@ int main() {
     //     char* memoryString = new char[512000];
     // }
 
-    cout << "-=== Exercise 4 ===-" << endl;
+    cout << "-=== Exercise 4 & 5 ===-" << endl;
     // Both these lines produce a "EXC_BAD_ACCESS (code=2, address=...)"
     // int largeArray[99999999];
     // toYou();

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "classes/GameObject.h"
+#include "classes/GameObject.cpp"
 
 using namespace std;
 
@@ -35,6 +35,22 @@ bool Descending(int a, int b) {
     return a > b;
 }
 
+template <typename T>
+void DisplayArray(T array[], int count) {
+    for (int i = 0; i < count; i++) {
+        cout << array[i] << endl;
+    }
+}
+
+template <typename T>
+T SumArray(T array[], int count) {
+    T sum = 0;
+    for (int i = 0; i < count; i++) {
+        sum += array[i];
+    }
+    return sum;
+}
+
 int main() {
     cout << "-=== Exercise 1 ===-" << endl;
     void (*helloFunction)() = HelloMessage;
@@ -53,14 +69,31 @@ int main() {
     Sort(numbers, 9, Descending);
 
     cout << "-=== Exercise 5 & 6 ===-" << endl;
-    GameObject* object = new GameObject(1, 1, 1, 1);
-    void (GameObject::*drawFunction)() = &GameObject::Draw;
+    GameObject<int>* object = new GameObject<int>(1, 1, 1, 1);
+    void (GameObject<int>::*drawFunction)() = &GameObject<int>::Draw;
     (object->*drawFunction)();
 
     cout << "-=== Exercise 7 ===-" << endl;
-    int* (GameObject::*moveFunction)(int x, int y, int z) = &GameObject::Move;
+    int* (GameObject<int>::*moveFunction)(int x, int y, int z) = &GameObject<int>::Move;
     int* response = (object->*moveFunction)(1, 2, 3);
     for (int i = 0; i < 3; i++) {
         cout << *response << endl;
     }
+
+    cout << "-=== Exercise 8 ===-" << endl;
+    float floats[] = { 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 };
+    DisplayArray(numbers, 9);
+    DisplayArray(floats, 9);
+
+    cout << "-=== Exercise 9 ===-" << endl;
+    cout << "Count of integers: " << SumArray(numbers, 9) << endl;
+    cout << "Count of floats: " << SumArray(floats, 9) << endl;
+
+    cout << "-=== Exercise 10 ===-" << endl;
+    GameObject<float>* floatObject = new GameObject<float>(1, 0.1f, 0.1f, 0.1f);
+    void (GameObject<float>::*floatDrawFunction)() = &GameObject<float>::Draw;
+    float* (GameObject<float>::*floatMoveFunction)(float x, float y, float z) = &GameObject<float>::Move;
+
+    (floatObject->*floatMoveFunction)(0.1, 0.2, 0.3);
+    (floatObject->*floatDrawFunction)();
 }
