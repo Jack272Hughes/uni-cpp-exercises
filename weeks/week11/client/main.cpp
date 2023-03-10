@@ -3,6 +3,8 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+#define SOCKET_ERROR -1
+
 using namespace std;
 
 void printErrorWithMessageAndExit(string message) {
@@ -16,7 +18,7 @@ int main() {
     // WSAStartup is not needed for Mac
     int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
 
-    if (clientSocket == -1)
+    if (clientSocket == SOCKET_ERROR)
         printErrorWithMessageAndExit("Error creating socket");
     cout << "Socket create successfully!" << endl;
 
@@ -27,7 +29,7 @@ int main() {
     address.sin_port = htons(8080);
     address.sin_addr.s_addr = inet_addr("127.0.0.1");
 
-    if(connect(clientSocket, (sockaddr*) &address, sizeof(address)) == -1)
+    if(connect(clientSocket, (sockaddr*) &address, sizeof(address)) == SOCKET_ERROR)
         printErrorWithMessageAndExit("Error while connecting to server socket");
     cout << "Successfully connected to server socket!" << endl;
 }

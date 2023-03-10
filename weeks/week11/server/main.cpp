@@ -4,6 +4,8 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 
+#define SOCKET_ERROR -1
+
 using namespace std;
 
 void printErrorWithMessageAndExit(string message) {
@@ -17,7 +19,7 @@ int main() {
     // WSAStartup is not needed for Mac
     int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
 
-    if (serverSocket == -1)
+    if (serverSocket == SOCKET_ERROR)
         printErrorWithMessageAndExit("Error creating socket");
     cout << "Socket create successfully!" << endl;
 
@@ -30,13 +32,13 @@ int main() {
     // If you wanted to accept from any IP use
     // address.sin_addr.s_addr = INADDR_ANY;
 
-    if (::bind(serverSocket, (sockaddr*) &address, sizeof(address)) == -1)
+    if (::bind(serverSocket, (sockaddr*) &address, sizeof(address)) == SOCKET_ERROR)
         printErrorWithMessageAndExit("Error trying to bind the socket");
     cout << "Socket successfully bound!" << endl;
 
     // Listen on socket
     cout << "-=== Server Step 4 ===-" << endl;
-    if(listen(serverSocket, 1) == -1)
+    if(listen(serverSocket, 1) == SOCKET_ERROR)
         printErrorWithMessageAndExit("Error trying to listen on bound socket");
     cout << "Listening on bound socket!" << endl;
 
@@ -47,14 +49,14 @@ int main() {
 
     int acceptedSocket = accept(serverSocket, (sockaddr*) &connectedClient, &connectedClientSize);
 
-    if (acceptedSocket == -1)
+    if (acceptedSocket == SOCKET_ERROR)
         printErrorWithMessageAndExit("Error while accepting socket");
     cout << "Accepted a socket!" << endl;
     
     cout << "-=== Server Additional Details ===-" << endl;
     // Get info of the incoming connection
     char hostName[NI_MAXHOST], serviceName[NI_MAXSERV];
-    if (getnameinfo((sockaddr*) &connectedClient, connectedClientSize, hostName, NI_MAXHOST, serviceName, NI_MAXSERV, NI_NUMERICHOST | NI_NUMERICSERV) == -1)
+    if (getnameinfo((sockaddr*) &connectedClient, connectedClientSize, hostName, NI_MAXHOST, serviceName, NI_MAXSERV, NI_NUMERICHOST | NI_NUMERICSERV) == SOCKET_ERROR)
         printErrorWithMessageAndExit("Error while trying to get information about connection");
     cout << "Connection was from host: '" << hostName << "' and port '" << serviceName << "'" << endl;
 
