@@ -6,7 +6,6 @@ private:
     Link* first;
 public:
     LinkedList();
-    ~LinkedList();
 
     Link* Delete(int key);
     void Display();
