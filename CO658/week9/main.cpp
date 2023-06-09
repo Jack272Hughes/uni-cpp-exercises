@@ -26,10 +26,9 @@ int main() {
     cout << "-=== Exercise 4 ===-" << endl;
     BreadthFirstSearch* bfs = new BreadthFirstSearch(graph);
     bfs->Traverse(locations[0]);
-    graph->Display();
 
     cout << "-=== Exercise 5 ===-" << endl;
-    // Reset visited status
+    // Reset visited status of all locations
     for (int index = 0; index < size; index++) locations[index]->wasVisited = false;
     DepthFirstSearch* dfs = new DepthFirstSearch(graph);
     dfs->Traverse(locations[0]);
